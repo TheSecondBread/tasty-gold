@@ -81,7 +81,7 @@ function Qr() {
 
     console.log(formData); // Log all form data including the Base64 image
 
-    fetch("http://localhost:8080/submit", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
