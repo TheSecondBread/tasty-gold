@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 function Qr() {
   const [firstName, setFirstName] = useState("");
@@ -13,6 +13,8 @@ function Qr() {
   const [comments, setComments] = useState("");
   const [imageBase64, setImageBase64] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+
+  const navigate = useNavigate()
 
   // Extracting search parameters from the URL
   const location = useLocation();
@@ -58,6 +60,10 @@ function Qr() {
       alert("All fields are required")
       return;
     }
+    else if(phone.length != 10){
+      alert("Phone number must be of 10 digits")
+      return;
+    }
 
 
     const formData = {
@@ -86,7 +92,14 @@ function Qr() {
       .then((data) => {
         // console.log("Success:", data);
         if(data["msg"] === "success"){
-          alert("Form submission successful")
+          // alert("Form submission successful")
+          navigate("/success")
+        }
+        else if(data["msg"] === "invalid coupon"){
+          alert("Invalid or incorrect coupon")
+        }
+        else if(data["msg"] === "coupon already exists"){
+          alert("This coupon was already used")
         }
         else{
           alert("Failed to submit form")
@@ -106,7 +119,7 @@ function Qr() {
       </div>
 
       {/* Display search parameters in an h3 */}
-      <h3 className="mb-5 text-center text-white font-bold">{"Applied coupon: " + searchParams.get("code")}</h3>
+      {/* <h3 className="mb-5 text-center text-white font-bold">{"Applied coupon: " + searchParams.get("code")}</h3> */}
 
       <form
         onSubmit={handleSubmit}
@@ -225,7 +238,7 @@ function Qr() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="mt-5 p-2 bg-[#42D851] text-white w-[223px] h-[65px] text-[32px] font-bold rounded-full mb-10"
+            className="mt-5 p-2 bg-[#42D851] text-white w-[223px] h-[65px] text-[32px] font-bold rounded-full mb-10 shadow-lg active:shadow-none"
           >
             Submit
           </button>

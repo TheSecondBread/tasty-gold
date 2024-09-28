@@ -57,8 +57,21 @@ func SetupConnectionPool() {
 			);
 		`
 
-		log.Println("Setting up the database table")
+		log.Println("Setting up the database tables")
 		_, err = pool.Exec(context.Background(), createTableQuery)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		createCouponCodeTableQuery := `
+			CREATE TABLE IF NOT EXISTS coupons (
+				id SERIAL PRIMARY KEY,
+				CouponCode TEXT NOT NULL UNIQUE
+			);
+		`
+
+		_, err = pool.Exec(context.Background(), createCouponCodeTableQuery)
 
 		if err != nil {
 			log.Fatal(err)
