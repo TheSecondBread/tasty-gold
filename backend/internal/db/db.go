@@ -22,7 +22,7 @@ func SetupConnectionPool() {
 	user := os.Getenv("POSTGRES_USER")         // your database user
 	password := os.Getenv("POSTGRES_PASSWORD") // your database password
 	dbname := os.Getenv("POSTGRES_DB_NAME")    // your database name
-	port := "5432"                             // your database port
+	port := os.Getenv("POSTGRES_PORT")         // your database port
 
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", user, password, postgresHost, port, dbname)
 
