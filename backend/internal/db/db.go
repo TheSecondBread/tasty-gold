@@ -52,7 +52,9 @@ func SetupConnectionPool() {
 				state TEXT NOT NULL,
 				coupon_code TEXT NOT NULL UNIQUE,
 				comments TEXT NOT NULL,
-				image_base_64 TEXT NOT NULL
+				image_base_64 TEXT NOT NULL,
+    			created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    			created_on_unix BIGINT DEFAULT EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT NOT NULL
 			);
 		`
 
