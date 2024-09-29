@@ -78,7 +78,7 @@ function Qr() {
 
     console.log(formData); // Log all form data including the Base64 image
 
-    fetch(`http://localhost:8080/submit`, {
+    fetch(`/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -111,17 +111,17 @@ function Qr() {
     <div className="flex flex-col items-center laila-light">
       <div className="flex flex-col items-center justify-center  md:px-20">
         <div className="border-4 border-[#ac0e0b] mt-20 rounded-2xl mb-5 md:border-8 bg-[#ac0e0b]">
-        <img src="Home1.jpg" alt="Home 1" className="rounded-xl" />
+        <img src="offer.jpg" alt="offer image" className="rounded-xl" />
 
         </div>
-        <div className="border-4 border-[#ac0e0b] rounded-lg bg-[#ac0e0b]">
-        <img src="Home2.png" alt="Home 2" className="w-full"/>
+        <div  className="border-4 border-[#ac0e0b] mt-2 rounded-2xl mb-5 md:border-8 bg-[#ac0e0b]">
+        <img src="offerdetails.jpg" alt="offer details" className="rounded-xl"/>
         </div>
         <div className="flex flex-col justify-center items-center">
-        <img src="Logo.png" alt="Home 3" className="mt-2" width={"40%"} height={"40%"}/>
-        <img src="text1.png" width={"40%"} height={"40%"}></img>
-        <img src="text2.png" width={"30%"} height={"40%"}></img>
-        <img src="text3.png" className="bg-[#92b13f]  mb-2 rounded-md mt-1" width={"60%"} height={"40%"}></img>
+        <img src="logo.png" alt="logo" className="mt-2" width={"40%"} height={"40%"}/>
+        <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
+        <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img>
+        <img src="sb.png" alt="sb" className="bg-[#92b13f]  mb-2 rounded-md mt-1" width={"60%"} height={"40%"}></img>
         </div>
         
       </div>
