@@ -44,16 +44,15 @@ func SetupConnectionPool() {
 		createTableQuery := `
 			CREATE TABLE IF NOT EXISTS submissions (
 				id SERIAL PRIMARY KEY,
-				FirstName VARCHAR(80) NOT NULL,
-				LastName VARCHAR(80) NOT NULL,
-				Email VARCHAR(80) NOT NULL,
-				Phone TEXT NOT NULL,
-				Place TEXT NOT NULL,
-				State TEXT NOT NULL,
-				Pincode TEXT NOT NULL,
-				CouponCode TEXT NOT NULL UNIQUE,
-				ImageBase64 TEXT NOT NULL,
-				Comments TEXT NOT NULL
+				name VARCHAR(80) NOT NULL,
+				phone TEXT NOT NULL,
+				place TEXT NOT NULL,
+				district TEXT NOT NULL,
+				pincode TEXT NOT NULL,
+				state TEXT NOT NULL,
+				coupon_code TEXT NOT NULL UNIQUE,
+				comments TEXT NOT NULL,
+				image_base_64 TEXT NOT NULL
 			);
 		`
 
@@ -67,7 +66,7 @@ func SetupConnectionPool() {
 		createCouponCodeTableQuery := `
 			CREATE TABLE IF NOT EXISTS coupons (
 				id SERIAL PRIMARY KEY,
-				CouponCode TEXT NOT NULL UNIQUE
+				coupon_code TEXT NOT NULL UNIQUE
 			);
 		`
 

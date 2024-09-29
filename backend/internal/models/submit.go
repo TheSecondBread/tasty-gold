@@ -1,14 +1,13 @@
 package models
 
 type SubmitRequest struct {
-	FirstName   string `json:"firstName"`
-	LastName    string `json:"lastName"`
-	Email       string `json:"email"`
+	Name        string `json:"name"`
 	Phone       string `json:"phone"`
 	Place       string `json:"place"`
-	State       string `json:"state"`
+	District    string `json:"district"`
 	Pincode     string `json:"pinCode"`
+	State       string `json:"state"`
 	CouponCode  string `json:"couponCode"`
-	ImageBase64 string `json:"imageBase64"`
 	Comments    string `json:"comments"`
+	ImageBase64 string `json:"imageBase64"`
 }

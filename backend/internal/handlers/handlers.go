@@ -32,7 +32,7 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//continue only if the required data is present
-	if submitRequest.FirstName == "" || submitRequest.Phone == "" || submitRequest.CouponCode == "" || submitRequest.ImageBase64 == "" {
+	if submitRequest.Name == "" || submitRequest.Phone == "" || submitRequest.CouponCode == "" || submitRequest.ImageBase64 == "" {
 		SendJSONResponse(w, map[string]string{"msg": "some mandatory field is missing"}, http.StatusBadRequest)
 		return
 	}
@@ -41,7 +41,7 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	pool := db.GetConnectionPool()
 
 	var fetchedCoupon string
-	couponQuery := "SELECT CouponCode FROM coupons WHERE CouponCode = $1"
+	couponQuery := "SELECT coupon_code FROM coupons WHERE coupon_code = $1"
 
 	err = pool.QueryRow(context.Background(), couponQuery, submitRequest.CouponCode).Scan(&fetchedCoupon)
 
@@ -57,8 +57,8 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if fetchedCoupon == submitRequest.CouponCode {
-		query := "INSERT INTO submissions (FirstName, LastName, Email, Phone, Place, State, Pincode, CouponCode, ImageBase64, Comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
-		_, err = pool.Exec(context.Background(), query, submitRequest.FirstName, submitRequest.LastName, submitRequest.Email, submitRequest.Phone, submitRequest.Place, submitRequest.State, submitRequest.Pincode, submitRequest.CouponCode, submitRequest.ImageBase64, submitRequest.Comments)
+		query := "INSERT INTO submissions (name, phone, place, district, pincode, state, coupon_code, comments, image_base_64) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+		_, err = pool.Exec(context.Background(), query, submitRequest.Name, submitRequest.Phone, submitRequest.Place, submitRequest.District, submitRequest.Pincode, submitRequest.State, submitRequest.CouponCode, submitRequest.Comments, submitRequest.ImageBase64)
 
 		if err != nil {
 			// fmt.Println(err)

@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate} from "react-router-dom";
 
 function Qr() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const [pinCode, setPinCode] = useState("");
-  const [state, setState] = useState("");
   const [place, setPlace] = useState("");
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
   const [couponCode, setCouponCode] = useState("");
   const [comments, setComments] = useState("");
   const [imageBase64, setImageBase64] = useState("");
@@ -46,13 +45,12 @@ function Qr() {
 
     // Check if all fields are filled
     if (
-      !firstName ||
-      !lastName ||
+      !name ||
       !phone ||
-      !email ||
       !pinCode ||
-      !state ||
       !place ||
+      !district ||
+      !state ||
       !couponCode ||
       !comments ||
       !imageBase64
@@ -67,21 +65,20 @@ function Qr() {
 
 
     const formData = {
-      firstName,
-      lastName,
+      name,
       phone,
-      email,
+      place,
+      district,
       pinCode,
       state,
-      place,
-      couponCode,
       comments,
       imageBase64,
+      couponCode,
     };
 
     console.log(formData); // Log all form data including the Base64 image
 
-    fetch(`/submit`, {
+    fetch(`http://localhost:8080/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -111,15 +108,33 @@ function Qr() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-b from-[#fdd152] to-[#8d2e12]">
-      <div className="flex flex-col items-center justify-center">
-        <img src="Home1.png" alt="Home 1" />
-        <img src="Home2.png" alt="Home 2" />
-        <img src="Home3.png" alt="Home 3" />
-      </div>
+    <div className="flex flex-col items-center laila-light">
+      <div className="flex flex-col items-center justify-center  md:px-20">
+        <div className="border-4 border-[#ac0e0b] mt-20 rounded-2xl mb-5 md:border-8 bg-[#ac0e0b]">
+        <img src="Home1.jpg" alt="Home 1" className="rounded-xl" />
 
-      {/* Display search parameters in an h3 */}
-      {/* <h3 className="mb-5 text-center text-white font-bold">{"Applied coupon: " + searchParams.get("code")}</h3> */}
+        </div>
+        <div className="border-4 border-[#ac0e0b] rounded-lg bg-[#ac0e0b]">
+        <img src="Home2.png" alt="Home 2" className="w-full"/>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+        <img src="Logo.png" alt="Home 3" className="mt-2" width={"40%"} height={"40%"}/>
+        <img src="text1.png" width={"40%"} height={"40%"}></img>
+        <img src="text2.png" width={"30%"} height={"40%"}></img>
+        <img src="text3.png" className="bg-[#92b13f]  mb-2 rounded-md mt-1" width={"60%"} height={"40%"}></img>
+        </div>
+        
+      </div>
+      <label>
+          <input
+            type="text"
+            value={couponCode}
+            disabled={true}
+            placeholder="Coupon Code"
+            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8"
+          />
+        </label>
+      <h3 className="mb-5 text-center text-white font-bold text-2xl">Fill The Details</h3>
 
       <form
         onSubmit={handleSubmit}
@@ -128,18 +143,9 @@ function Qr() {
         <label>
           <input
             type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
-            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-          />
-        </label>
-        <label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name*"
             className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
           />
         </label>
@@ -148,18 +154,27 @@ function Qr() {
             type="number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone"
+            placeholder="Phone*"
             className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
           />
         </label>
         <label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-          />
+        <input
+          type="text"
+          value={place}
+          onChange={(e) => setPlace(e.target.value)}
+          placeholder="Place*"
+          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
+        />
+        </label>
+        <label>
+        <input
+          type="text"
+          value={district}
+          onChange={(e) => setDistrict(e.target.value)}
+          placeholder="District*"
+          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
+        />
         </label>
         <label>
           <div className="flex gap-1">
@@ -167,40 +182,26 @@ function Qr() {
               type="number"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
-              placeholder="Pin Code"
+              placeholder="Pin Code*"
               className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
             />
             <input
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              placeholder="State"
+              placeholder="State*"
               className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
             />
           </div>
         </label>
-        <input
-          type="text"
-          value={place}
-          onChange={(e) => setPlace(e.target.value)}
-          placeholder="Place"
-          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-        />
-        <label>
-          <input
-            type="text"
-            value={couponCode}
-            disabled={true}
-            placeholder="Coupon Code"
-            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-          />
-        </label>
+
+
         <div className="flex gap-1">
           <label>
             <textarea
               value={comments}
               onChange={(e) => setComments(e.target.value)}
-              placeholder="Any Comment/Suggestions"
+              placeholder="Any Comment/Suggestions*"
               className="w-[220px] border border-gray-300 rounded-md px-2 py-1 h-[143px]"
             />
           </label>
@@ -219,7 +220,7 @@ function Qr() {
                 className="h-10 w-10 mb-2"
               />
               <span className="text-gray-500 text-sm">
-                Upload your image with pouch
+                Upload your image with pouch*
               </span>
             </div>
           </div>
@@ -238,9 +239,9 @@ function Qr() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="mt-5 p-2 bg-[#42D851] text-white w-[223px] h-[65px] text-[32px] font-bold rounded-full mb-10 shadow-lg active:shadow-none"
+            className="mt-5 p-2 bg-white text-black w-[223px] h-[65px] text-[32px] font-bold rounded-[43px] mb-10 shadow-2xl active:shadow-none border-1 border-black m-plus-2-font"
           >
-            Submit
+            SUBMIT
           </button>
         </div>
       </form>
