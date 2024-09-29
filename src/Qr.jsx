@@ -110,18 +110,18 @@ function Qr() {
   return (
     <div className="flex flex-col items-center laila-light">
       <div className="flex flex-col items-center justify-center  md:px-20">
-        <div className="border-4 border-[#ac0e0b] mt-20 rounded-2xl mb-5 md:border-8 bg-[#ac0e0b]">
+        <div className="border-4 border-[#ac0e0b] mt-4 rounded-2xl mb-2 md:border-8 bg-[#ac0e0b]">
         <img src="offer.jpg" alt="offer image" className="rounded-xl" />
 
         </div>
-        <div  className="border-4 border-[#ac0e0b] mt-2 rounded-2xl mb-5 md:border-8 bg-[#ac0e0b]">
+        <div  className="border-4 border-[#ac0e0b] rounded-2xl mb-3 md:border-8 bg-[#ac0e0b]">
         <img src="offerdetails.jpg" alt="offer details" className="rounded-xl"/>
         </div>
         <div className="flex flex-col justify-center items-center">
-        <img src="tastygold.png" alt="tasty gold" className="mt-2" width={"40%"} height={"40%"}/>
+        <img src="tastygold.png" alt="tasty gold" className="mt-1" width={"40%"} height={"40%"}/>
         <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
         <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img>
-        <img src="sb.png" alt="sb" className="bg-[#92b13f]  mb-2 rounded-md mt-1" width={"60%"} height={"40%"}></img>
+        <img src="sb.png" alt="sb" className="bg-[#92b13f] px-2 mb-4 rounded-md mt-4" width={"60%"} height={"40%"}></img>
         </div>
         
       </div>
@@ -131,14 +131,14 @@ function Qr() {
             value={couponCode}
             disabled={true}
             placeholder="Coupon Code"
-            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8"
+            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8  text-center"
           />
         </label>
       <h3 className="mb-5 text-center text-white font-bold text-2xl">Fill The Details</h3>
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-full max-w-[400px] px-2"
+        className="flex flex-col gap-4 w-full max-w-[400px] px-2 text-base"
       >
         <label>
           <input
@@ -239,7 +239,7 @@ function Qr() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="mt-5 p-2 bg-white text-black w-[223px] h-[65px] text-[32px] font-bold rounded-[43px] mb-10 shadow-2xl active:shadow-none border-1 border-black m-plus-2-font"
+            className="mt-5 p-2 bg-white text-black w-[223px] h-[65px] text-[32px] font-bold rounded-[43px] mb-10 shadow-3xl active:shadow-none border-1 border-black m-plus-2-font"
           >
             SUBMIT
           </button>
