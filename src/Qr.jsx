@@ -118,7 +118,7 @@ function Qr() {
         <img src="offerdetails.jpg" alt="offer details" className="rounded-xl"/>
         </div>
         <div className="flex flex-col justify-center items-center">
-        <img src="logo.png" alt="logo" className="mt-2" width={"40%"} height={"40%"}/>
+        <img src="tastygold.png" alt="tasty gold" className="mt-2" width={"40%"} height={"40%"}/>
         <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
         <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img>
         <img src="sb.png" alt="sb" className="bg-[#92b13f]  mb-2 rounded-md mt-1" width={"60%"} height={"40%"}></img>
