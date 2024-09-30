@@ -78,7 +78,7 @@ function Qr() {
 
     console.log(formData); // Log all form data including the Base64 image
 
-    fetch(`/submit`, {
+    fetch(`http://localhost:8080/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
