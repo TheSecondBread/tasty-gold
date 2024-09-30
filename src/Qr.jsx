@@ -119,8 +119,11 @@ function Qr() {
         </div>
         <div className="flex flex-col justify-center items-center">
         <img src="tastygold.png" alt="tasty gold" className="mt-1" width={"40%"} height={"40%"}/>
-        <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
-        <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img>
+        
+        {/* <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
+        <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img> */}
+        <img src="cooking.png" alt="premium" width={"30%"} height={"30%"}></img>
+        
         <img src="sb.png" alt="sb" className="bg-[#92b13f] px-2 mb-4 rounded-md mt-4" width={"60%"} height={"40%"}></img>
         </div>
         
@@ -130,7 +133,7 @@ function Qr() {
             type="text"
             value={couponCode}
             disabled={true}
-            placeholder="Coupon Code"
+            placeholder="Coupon Code*"
             className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8  text-center"
           />
         </label>
