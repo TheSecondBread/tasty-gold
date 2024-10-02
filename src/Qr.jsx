@@ -52,7 +52,6 @@ function Qr() {
       !district ||
       !state ||
       !couponCode ||
-      !comments ||
       !imageBase64
     ) {
       alert("All fields are required")

@@ -11,3 +11,18 @@ type SubmitRequest struct {
 	Comments    string `json:"comments"`
 	ImageBase64 string `json:"imageBase64"`
 }
+
+type WinnersRequest struct {
+	StartDate string `json:"start_date"`
+	EndDate   string `json:"end_date"`
+	Week      int8   `json:"week"`
+	Limit     int16  `json:"limit"`
+}
+
+type Winner struct {
+	Name       string `json:"name"`
+	Phone      string `json:"phone"`
+	CouponCode string `json:"coupon_code"`
+	District   string `json:"district"`
+	State      string `json:"state"`
+}

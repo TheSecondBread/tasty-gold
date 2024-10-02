@@ -19,6 +19,9 @@ func main() {
 	mux.HandleFunc("GET /healthcheck", handlers.HealthCheckHandler)
 	mux.HandleFunc("POST /submit", handlers.SubmissionHandler)
 
+	mux.HandleFunc("POST /api/v1/generatewinners", handlers.GenerateWinnersHandler)
+	mux.HandleFunc("GET /api/v1/getwinners", handlers.GetWinnersByWeekHandler)
+
 	wrappedMux := middlewares.NewLogger(middlewares.NewCors(mux))
 
 	log.Println("Listening on port 8080")

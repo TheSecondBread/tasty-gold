@@ -40,7 +40,7 @@ func SetupConnectionPool() {
 			log.Fatal(err)
 		}
 
-		// Setup the primary table
+		// submissions table
 		createTableQuery := `
 			CREATE TABLE IF NOT EXISTS submissions (
 				id SERIAL PRIMARY KEY,
@@ -51,7 +51,7 @@ func SetupConnectionPool() {
 				pincode TEXT NOT NULL,
 				state TEXT NOT NULL,
 				coupon_code TEXT NOT NULL UNIQUE,
-				comments TEXT NOT NULL,
+				comments TEXT,
 				image_base_64 TEXT NOT NULL,
     			created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     			created_on_unix BIGINT DEFAULT EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT NOT NULL
@@ -65,6 +65,7 @@ func SetupConnectionPool() {
 			log.Fatal(err)
 		}
 
+		//coupons table
 		createCouponCodeTableQuery := `
 			CREATE TABLE IF NOT EXISTS coupons (
 				id SERIAL PRIMARY KEY,
@@ -73,6 +74,30 @@ func SetupConnectionPool() {
 		`
 
 		_, err = pool.Exec(context.Background(), createCouponCodeTableQuery)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		//winners table
+		createWinnersTableQuery := `
+			CREATE TABLE IF NOT EXISTS winners (
+				id SERIAL PRIMARY KEY,
+				user_id INT NOT NULL, -- id from submissions table
+				name VARCHAR(80) NOT NULL,
+				phone TEXT NOT NULL,
+				coupon_code TEXT NOT NULL UNIQUE,
+				place TEXT NOT NULL,
+				district TEXT NOT NULL,
+				pincode TEXT NOT NULL,
+				state TEXT NOT NULL,
+				week SMALLINT NOT NULL,
+				won_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+				won_on_unix BIGINT DEFAULT EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT NOT NULL
+			)
+		`
+
+		_, err = pool.Exec(context.Background(), createWinnersTableQuery)
 
 		if err != nil {
 			log.Fatal(err)
