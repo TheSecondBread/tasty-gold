@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import Qr from './Qr'
+import Qr from './components/Qr'
 import Home from './Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Success from './Success'

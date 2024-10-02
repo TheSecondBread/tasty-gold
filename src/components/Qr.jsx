@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import DistrictDropdown from "./DistrictDropDown";
 
 function Qr() {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ function Qr() {
   const [imageBase64, setImageBase64] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Extracting search parameters from the URL
   const location = useLocation();
@@ -54,14 +55,14 @@ function Qr() {
       !couponCode ||
       !imageBase64
     ) {
-      alert("All fields are required")
+      alert("All fields are required");
       return;
-    }
-    else if(phone.length != 10){
-      alert("Phone number must be of 10 digits")
+    } else if (phone.length != 10) {
+      alert("Phone number must be of 10 digits");
       return;
+    } else if (districtNames.includes(district) == false){
+      alert("Select a valid district")
     }
-
 
     const formData = {
       name,
@@ -87,56 +88,135 @@ function Qr() {
       .then((response) => response.json())
       .then((data) => {
         // console.log("Success:", data);
-        if(data["msg"] === "success"){
+        if (data["msg"] === "success") {
           // alert("Form submission successful")
-          navigate("/success")
-        }
-        else if(data["msg"] === "invalid coupon"){
-          alert("Invalid or incorrect coupon")
-        }
-        else if(data["msg"] === "coupon already exists"){
-          alert("This coupon was already used")
-        }
-        else{
-          alert("Failed to submit form")
+          navigate("/success");
+        } else if (data["msg"] === "invalid coupon") {
+          alert("Invalid or incorrect coupon");
+        } else if (data["msg"] === "coupon already exists") {
+          alert("This coupon was already used");
+        } else {
+          alert("Failed to submit form");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
+  // district dropdown
+  const districtNames=[
+    "Adilabad",
+    "Bhadrachari Kothagudem",
+    "Hanamakonda",
+    "Hyderabad",
+    "Jagtial",
+    "Jangoan",
+    "Jayashankar Bhoopalpally",
+    "Jogulamba Gadwal",
+    "Kamareddy",
+    "Karimnagar",
+    "Khammam",
+    "Komaram Bheem Asifabad",
+    "Mahabubabad",
+    "Mahabubnagar",
+    "Mancherial",
+    "Medak",
+    "Medchal-Malkajgiri",
+    "Mulug",
+    "Nagarkurnool",
+    "Nalgonda",
+    "Narayanpet",
+    "Nirmal",
+    "Nizamabad",
+    "Peddapalli",
+    "Rajanna Sircilla",
+    "Rangareddy",
+    "Sangareddy",
+    "Siddipet",
+    "Suryapet",
+    "Vikarabad",
+    "Wanaparthy",
+    "Warangal",
+    "Yadadri Bhuvanagiri"
+  ]
+  
+  const [filteredDistricts, setFilteredDistricts] = useState(districtNames);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setDistrict(value);
+    setFilteredDistricts(
+      districtNames.filter(name => name.toLowerCase().includes(value.toLowerCase()))
+    );
+    setIsDropdownVisible(true); // Show dropdown while typing
+  };
+
+  const handleSelectChange = (name) => {
+    setDistrict(name); // Set the selected district in the input
+    setIsDropdownVisible(false); // Hide dropdown after selection
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setIsDropdownVisible(false), 100); // Delay hiding to allow click event to register
+  };  
 
   return (
     <div className="flex flex-col items-center laila-light">
       <div className="flex flex-col items-center justify-center  md:px-20">
         <div className="border-4 border-[#ac0e0b] mt-4 rounded-2xl mb-2 md:border-8 bg-[#ac0e0b]">
-        <img src="offer.jpg" alt="offer image" className="rounded-xl" />
-
+          <img src="offer.jpg" alt="offer image" className="rounded-xl" />
         </div>
-        <div  className="border-4 border-[#ac0e0b] rounded-2xl mb-3 md:border-8 bg-[#ac0e0b]">
-        <img src="offerdetails.jpg" alt="offer details" className="rounded-xl"/>
+        <div className="border-4 border-[#ac0e0b] rounded-2xl mb-3 md:border-8 bg-[#ac0e0b]">
+          <img
+            src="offerdetails.jpg"
+            alt="offer details"
+            className="rounded-xl"
+          />
         </div>
         <div className="flex flex-col justify-center items-center">
-        <img src="tastygold.png" alt="tasty gold" className="mt-1" width={"40%"} height={"40%"}/>
-        
-        {/* <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
+          <img
+            src="tastygold.png"
+            alt="tasty gold"
+            className="mt-1"
+            width={"40%"}
+            height={"40%"}
+          />
+
+          {/* <img src="premium.png" alt="premium" width={"40%"} height={"40%"}></img>
         <img src="cookingoils.png" alt="cooking oils" width={"30%"} height={"40%"}></img> */}
-        <img src="cooking.png" alt="premium" width={"30%"} height={"30%"}></img>
-        
-        <img src="sb.png" alt="sb" className="bg-[#92b13f] px-2 mb-4 rounded-md mt-4" width={"60%"} height={"40%"}></img>
+          <img
+            src="cooking.png"
+            alt="premium"
+            width={"30%"}
+            height={"30%"}
+          ></img>
+
+          <img
+            src="sb.png"
+            alt="sb"
+            className="bg-[#92b13f] px-2 mb-4 rounded-md mt-4"
+            width={"60%"}
+            height={"40%"}
+          ></img>
         </div>
-        
       </div>
       <label>
-          <input
-            type="text"
-            value={couponCode}
-            disabled={true}
-            placeholder="Coupon Code*"
-            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8  text-center"
-          />
-        </label>
-      <h3 className="mb-5 text-center text-white font-bold text-2xl">Fill The Details</h3>
+        <input
+          type="text"
+          value={couponCode}
+          disabled={true}
+          placeholder="Coupon Code*"
+          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[30px]  min-w-[300px] max-w-[400px] bg-white mb-8  text-center"
+        />
+      </label>
+      <h3 className="mb-5 text-center text-white font-bold text-2xl">
+        Fill The Details
+      </h3>
 
       <form
         onSubmit={handleSubmit}
@@ -161,23 +241,39 @@ function Qr() {
           />
         </label>
         <label>
-        <input
-          type="text"
-          value={place}
-          onChange={(e) => setPlace(e.target.value)}
-          placeholder="Place*"
-          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-        />
+          <input
+            type="text"
+            value={place}
+            onChange={(e) => setPlace(e.target.value)}
+            placeholder="Place*"
+            className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
+          />
         </label>
-        <label>
-        <input
-          type="text"
-          value={district}
-          onChange={(e) => setDistrict(e.target.value)}
-          placeholder="District*"
-          className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-        />
-        </label>
+        {/* <DistrictDropdown></DistrictDropdown> */}
+        <div className="relative"> {/* Wrap with relative to position dropdown */}
+      <input
+        type="text"
+        value={district}
+        onClick={toggleDropdown} // Show dropdown on click
+        onChange={handleInputChange}
+        onBlur={handleBlur} // Hide dropdown when input loses focus
+        placeholder="District*"
+        className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
+      />
+      {isDropdownVisible && (
+        <ul className="absolute z-10 w-full border border-gray-300 bg-white rounded-md mt-1 max-h-60 overflow-auto">
+          {filteredDistricts.map((name, index) => (
+            <li 
+              key={index} 
+              onClick={() => handleSelectChange(name)} // Set the selected district and hide dropdown
+              className="cursor-pointer hover:bg-gray-200 px-2 py-1"
+            >
+              {name}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
         <label>
           <div className="flex gap-1">
             <input
@@ -187,23 +283,25 @@ function Qr() {
               placeholder="Pin Code*"
               className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
             />
-            <input
-              type="text"
+            <select
               value={state}
               onChange={(e) => setState(e.target.value)}
-              placeholder="State*"
               className="w-full border border-gray-300 rounded-md px-2 py-1 h-[63px]"
-            />
+            >
+              <option value="" disabled>
+                Select State*
+              </option>
+              <option value="Telangana">Telangana</option>
+            </select>
           </div>
         </label>
-
 
         <div className="flex gap-1">
           <label>
             <textarea
               value={comments}
               onChange={(e) => setComments(e.target.value)}
-              placeholder="Any Comment/Suggestions*"
+              placeholder="Any Comment/Suggestions"
               className="w-[220px] border border-gray-300 rounded-md px-2 py-1 h-[143px]"
             />
           </label>
