@@ -33,9 +33,7 @@ function Qr() {
       fetch(`http://localhost:8080/checkcoupon?coupon=${couponCode}`)
       .then((resp)=>resp.json())
       .then((data)=>{
-        console.log(data)
         if(data["msg"] === "coupon already exists"){
-          console.log("navigating to success")
           navigate("/success")
         }
       })
