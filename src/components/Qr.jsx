@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import DistrictDropdown from "./DistrictDropDown";
+
+import districtNames from "./constants";
 
 function Qr() {
   const [name, setName] = useState("");
@@ -118,42 +119,6 @@ function Qr() {
         console.error("Error:", error);
       });
   };
-  // district dropdown
-  const districtNames=[
-    "Adilabad",
-    "Bhadrachari Kothagudem",
-    "Hanamakonda",
-    "Hyderabad",
-    "Jagtial",
-    "Jangoan",
-    "Jayashankar Bhoopalpally",
-    "Jogulamba Gadwal",
-    "Kamareddy",
-    "Karimnagar",
-    "Khammam",
-    "Komaram Bheem Asifabad",
-    "Mahabubabad",
-    "Mahabubnagar",
-    "Mancherial",
-    "Medak",
-    "Medchal-Malkajgiri",
-    "Mulug",
-    "Nagarkurnool",
-    "Nalgonda",
-    "Narayanpet",
-    "Nirmal",
-    "Nizamabad",
-    "Peddapalli",
-    "Rajanna Sircilla",
-    "Rangareddy",
-    "Sangareddy",
-    "Siddipet",
-    "Suryapet",
-    "Vikarabad",
-    "Wanaparthy",
-    "Warangal",
-    "Yadadri Bhuvanagiri"
-  ]
   
   const [filteredDistricts, setFilteredDistricts] = useState(districtNames);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -306,6 +271,10 @@ function Qr() {
               <option value="" disabled>
                 Select State*
               </option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Maharashtra">Maharashtra</option>
               <option value="Telangana">Telangana</option>
             </select>
           </div>

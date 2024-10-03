@@ -4,10 +4,12 @@ import Qr from './components/Qr'
 import Home from './Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Success from './Success'
-import WinnersDashboard from './components/WinnersDashboard'
-import WinnersByWeeks from './components/WinnersByWeeks'
-import Winners from './components/Winners'
+import WinnersDashboard from './components/winners/WinnersDashboard'
+import WinnersByWeeks from './components/winners/WinnersByWeeks'
 import PrivacyPolicy from './components/PrivacyPolicy'
+import ViewWinner from './components/winners/ViewWinner'
+import WinnersTable from './components/winners/Winners'
+
 
 function App() {
 
@@ -18,9 +20,10 @@ function App() {
       <Route path='/qr' element={<Qr></Qr>}></Route>
       <Route path='/winnersdashboard' element={<WinnersDashboard></WinnersDashboard>}></Route>
       <Route path='/winnersbyweeks' element={<WinnersByWeeks></WinnersByWeeks>}></Route>
-      <Route path='/winners' element={<Winners></Winners>}></Route>
+      <Route path='/winners' element={<WinnersTable></WinnersTable>}></Route>
       <Route path='/privacy-policy' element={<PrivacyPolicy></PrivacyPolicy>}></Route>
-      
+      <Route path='/viewwinner' element={<ViewWinner></ViewWinner>}></Route>
+
       <Route path='/success' element={<Success></Success>}></Route>
 
     </Routes>
