@@ -9,6 +9,7 @@ import WinnersByWeeks from './components/winners/WinnersByWeeks'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ViewWinner from './components/winners/ViewWinner'
 import WinnersTable from './components/winners/WinnersTable'
+import TermsAndConditions from './components/TermsAndConditions'
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
       <Route path='/winnersbyweeks' element={<WinnersByWeeks></WinnersByWeeks>}></Route>
       <Route path='/winners' element={<WinnersTable></WinnersTable>}></Route>
       <Route path='/privacy-policy' element={<PrivacyPolicy></PrivacyPolicy>}></Route>
+      <Route path='/terms-and-conditions' element={<TermsAndConditions></TermsAndConditions>}></Route>
+
       <Route path='/viewwinner' element={<ViewWinner></ViewWinner>}></Route>
 
       <Route path='/success' element={<Success></Success>}></Route>
