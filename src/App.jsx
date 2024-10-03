@@ -8,7 +8,7 @@ import WinnersDashboard from './components/winners/WinnersDashboard'
 import WinnersByWeeks from './components/winners/WinnersByWeeks'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ViewWinner from './components/winners/ViewWinner'
-import WinnersTable from './components/winners/Winners'
+import WinnersTable from './components/winners/WinnersTable'
 
 
 function App() {

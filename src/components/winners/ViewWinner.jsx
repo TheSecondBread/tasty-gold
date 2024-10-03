@@ -18,7 +18,10 @@ function ViewWinner() {
           />
         </div>
         <div className='flex flex-col justify-center items-center mt-20 mb-10'>
-            <div className='w-[371px] h-[451px] bg-[#FFEDCC] opacity-80'></div>
+            <div className='w-[371px] h-[451px] bg-[#FFEDCC] opacity-80 flex justify-center items-center'>
+            {/* <img src={`data:image/png;base64,${winner.img}`} alt="Winner" /> */}
+              <img src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"></img>
+            </div>
             <div className='mt-10 bg-[#FFEDCC] opacity-80 w-[371px] text-center text-[24px] laila-medium'>{winner.type} Winner</div>
             <div className='text-[16px] laila-medium mt-2'>
                 {winner.location.map((line)=>(
