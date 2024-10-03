@@ -1,11 +1,13 @@
 package handlers
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 	"net/http"
 	"strconv"
 
+	"github.com/0jk6/tasty-gold-backend/internal/db"
 	"github.com/0jk6/tasty-gold-backend/internal/models"
 )
 
@@ -38,6 +40,29 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	result, httpStatus := insertIntoDB(&submitRequest)
 
 	sendJSONResponse(w, result, httpStatus)
+}
+
+func CheckCouponHandler(w http.ResponseWriter, r *http.Request) {
+	coupon := r.URL.Query().Get("coupon")
+
+	if coupon == "" {
+		sendJSONResponse(w, map[string]string{"msg": "invalid coupon"}, http.StatusBadRequest)
+		return
+	}
+
+	var submissionId int
+	pool := db.GetConnectionPool()
+
+	query := `SELECT id FROM submissions WHERE coupon_code = $1`
+
+	pool.QueryRow(context.Background(), query, coupon).Scan(&submissionId)
+
+	if submissionId == 0 {
+		sendJSONResponse(w, map[string]string{"msg": "coupon is not submitted"}, http.StatusOK)
+		return
+	}
+
+	sendJSONResponse(w, map[string]string{"msg": "coupon already exists"}, http.StatusOK)
 }
 
 func GenerateWinnersHandler(w http.ResponseWriter, r *http.Request) {

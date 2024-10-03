@@ -18,6 +18,7 @@ func main() {
 	mux.HandleFunc("GET /{$}", handlers.HomeHandler)
 	mux.HandleFunc("GET /healthcheck", handlers.HealthCheckHandler)
 	mux.HandleFunc("POST /submit", handlers.SubmissionHandler)
+	mux.HandleFunc("GET /checkcoupon", handlers.CheckCouponHandler)
 
 	mux.HandleFunc("POST /api/v1/generatewinners", handlers.GenerateWinnersHandler)
 	mux.HandleFunc("GET /api/v1/getwinners", handlers.GetWinnersByWeekHandler)

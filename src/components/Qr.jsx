@@ -28,6 +28,23 @@ function Qr() {
     }
   }, [location.search]);
 
+  useEffect(()=>{
+    if(couponCode != ""){
+      fetch(`http://localhost:8080/checkcoupon?coupon=${couponCode}`)
+      .then((resp)=>resp.json())
+      .then((data)=>{
+        console.log(data)
+        if(data["msg"] === "coupon already exists"){
+          console.log("navigating to success")
+          navigate("/success")
+        }
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    }
+  }, [couponCode])
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
