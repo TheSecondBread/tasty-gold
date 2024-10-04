@@ -10,7 +10,7 @@ function WinnersTable() {
   const [flag, setFlag] = useState(false)
 
   useEffect(()=>{
-    fetch(`/getwinners?week=${week}`)
+    fetch(`api/v1/getwinners?week=${week}`)
     .then((resp)=>resp.json())
     .then((data)=>{
       setWinners(data["msg"])

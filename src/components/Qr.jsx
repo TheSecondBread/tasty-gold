@@ -31,7 +31,7 @@ function Qr() {
 
   useEffect(()=>{
     if(couponCode != ""){
-      fetch(`/checkcoupon?coupon=${couponCode}`)
+      fetch(`api/v1/checkcoupon?coupon=${couponCode}`)
       .then((resp)=>resp.json())
       .then((data)=>{
         if(data["msg"] === "coupon already exists"){
@@ -94,7 +94,7 @@ function Qr() {
 
     console.log(formData); // Log all form data including the Base64 image
 
-    fetch(`/submit`, {
+    fetch(`api/v1/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
