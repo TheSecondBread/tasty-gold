@@ -11,12 +11,14 @@ import ViewWinner from './components/winners/ViewWinner'
 import WinnersTable from './components/winners/WinnersTable'
 import TermsAndConditions from './components/TermsAndConditions'
 import AlreadyRegistered from './AlreadyRegistered'
+import Sidebar from './components/Sidebar'
 
 
 function App() {
 
   return (
     <BrowserRouter>
+    <Sidebar></Sidebar>
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
       <Route path='/qr' element={<Qr></Qr>}></Route>
@@ -27,7 +29,6 @@ function App() {
       <Route path='/terms-and-conditions' element={<TermsAndConditions></TermsAndConditions>}></Route>
 
       <Route path='/view-winner' element={<ViewWinner></ViewWinner>}></Route>
-
       <Route path='/success' element={<Success></Success>}></Route>
       <Route path='/already-registered' element={<AlreadyRegistered></AlreadyRegistered>}></Route>
 
