@@ -16,9 +16,9 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /{$}", handlers.HomeHandler)
-	mux.HandleFunc("GET /healthcheck", handlers.HealthCheckHandler)
-	mux.HandleFunc("POST /submit", handlers.SubmissionHandler)
-	mux.HandleFunc("GET /checkcoupon", handlers.CheckCouponHandler)
+	mux.HandleFunc("GET api/v1/healthcheck", handlers.HealthCheckHandler)
+	mux.HandleFunc("POST api/v1/submit", handlers.SubmissionHandler)
+	mux.HandleFunc("GET api/v1/checkcoupon", handlers.CheckCouponHandler)
 
 	mux.HandleFunc("POST /api/v1/generatewinners", handlers.GenerateWinnersHandler)
 	mux.HandleFunc("GET /api/v1/getwinners", handlers.GetWinnersByWeekHandler)
