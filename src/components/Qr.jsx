@@ -35,7 +35,7 @@ function Qr() {
       .then((resp)=>resp.json())
       .then((data)=>{
         if(data["msg"] === "coupon already exists"){
-          navigate("/success")
+          navigate("/already-registered")
         }
       })
       .catch(err=>{

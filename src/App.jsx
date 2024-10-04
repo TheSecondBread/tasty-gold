@@ -10,6 +10,7 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import ViewWinner from './components/winners/ViewWinner'
 import WinnersTable from './components/winners/WinnersTable'
 import TermsAndConditions from './components/TermsAndConditions'
+import AlreadyRegistered from './AlreadyRegistered'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path='/view-winner' element={<ViewWinner></ViewWinner>}></Route>
 
       <Route path='/success' element={<Success></Success>}></Route>
+      <Route path='/already-registered' element={<AlreadyRegistered></AlreadyRegistered>}></Route>
 
     </Routes>
     </BrowserRouter>
