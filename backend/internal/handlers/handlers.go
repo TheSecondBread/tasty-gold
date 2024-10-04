@@ -78,6 +78,27 @@ func GenerateWinnersHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	validTokens := []string{
+		"padoXbrAjTldzGnLSIfs",
+		"pPdShVytkvBoNkOSLDQo",
+		"GHGWJjVlzLehTcVbHKNk",
+		"rqzwRVZGBOHpurdysPLN",
+		"gwugMMGsqmHdxUrvuaOe",
+	}
+
+	found := false
+	for _, v := range validTokens {
+		if v == generateWinnersRequest.Token {
+			found = true
+			break
+		}
+	}
+
+	if found == false {
+		sendJSONResponse(w, "404 page not found", http.StatusNotFound)
+		return
+	}
+
 	//continue only if the required data is present
 	if generateWinnersRequest.StartDate == "" || generateWinnersRequest.EndDate == "" || generateWinnersRequest.Week == 0 {
 		sendJSONResponse(w, map[string]string{"msg": "some mandatory field is missing"}, http.StatusBadRequest)

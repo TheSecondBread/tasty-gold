@@ -17,6 +17,7 @@ type WinnersRequest struct {
 	EndDate   string `json:"end_date"`
 	Week      int8   `json:"week"`
 	Limit     int16  `json:"limit"`
+	Token     string `json:"token"`
 }
 
 type Winner struct {
