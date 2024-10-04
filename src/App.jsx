@@ -19,13 +19,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
       <Route path='/qr' element={<Qr></Qr>}></Route>
-      <Route path='/winnersdashboard' element={<WinnersDashboard></WinnersDashboard>}></Route>
-      <Route path='/winnersbyweeks' element={<WinnersByWeeks></WinnersByWeeks>}></Route>
+      <Route path='/winners-dashboard' element={<WinnersDashboard></WinnersDashboard>}></Route>
+      <Route path='/winners-by-weeks' element={<WinnersByWeeks></WinnersByWeeks>}></Route>
       <Route path='/winners' element={<WinnersTable></WinnersTable>}></Route>
       <Route path='/privacy-policy' element={<PrivacyPolicy></PrivacyPolicy>}></Route>
       <Route path='/terms-and-conditions' element={<TermsAndConditions></TermsAndConditions>}></Route>
 
-      <Route path='/viewwinner' element={<ViewWinner></ViewWinner>}></Route>
+      <Route path='/view-winner' element={<ViewWinner></ViewWinner>}></Route>
 
       <Route path='/success' element={<Success></Success>}></Route>
 

@@ -8,7 +8,7 @@ function WinnersDashboard() {
       </div>
 
       {/* Winners Section */}
-      <a href="/winnersbyweeks"><div className="mt-20 md:mt-24 flex px-2 justify-center">
+      <a href="/winners-by-weeks"><div className="mt-20 md:mt-24 flex px-2 justify-center">
         <div className="flex items-center justify-center md:justify-between md:px-10 w-full max-w-[450px]  h-[163px] md:h-[163px] border-4 border-[#ac0e0b] bg-[#FFEDCC] rounded-[20px] shadow-3xl">
           <img
             src="goldfestoffer.png"

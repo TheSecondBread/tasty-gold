@@ -31,7 +31,7 @@ function Qr() {
 
   useEffect(()=>{
     if(couponCode != ""){
-      fetch(`http://localhost:8080/checkcoupon?coupon=${couponCode}`)
+      fetch(`/checkcoupon?coupon=${couponCode}`)
       .then((resp)=>resp.json())
       .then((data)=>{
         if(data["msg"] === "coupon already exists"){

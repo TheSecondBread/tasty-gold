@@ -4,38 +4,42 @@ function WinnerList() {
     const navigate = useNavigate()
     const handleCardClick = (winner) => {
         // Navigate to the test2 page and pass the winner details as state
-        navigate('/viewwinner', { state: { winner } });
+        navigate('/view-winner', { state: { winner } });
     };
     const winners = [
         {
           id: 1,
           sup: "st",
           type: "5g GOLD",
-          location: ["Ne amma", "Kamareddy", "Telangana"],
+          location: ["Person 1", "Kamareddy", "Telangana"],
           phone: "1234567890",
+          image: "https://www.dexerto.com/cdn-image/wp-content/uploads/2024/04/15/ishowspeed-breaks-setup-24M-subscribers.jpg"
         },
         {
           id: 2,
           sup: "nd",
           type: "5g GOLD",
-          location: ["Ne amma", "Kamareddy", "Telangana"],
+          location: ["Person 2", "Kamareddy", "Telangana"],
           phone: "1234567890",
+          image: "https://res.cloudinary.com/dqzkirtbz/image/upload/w_auto/q_auto,f_auto,dpr_auto/v1698342290/Website/blog/female_portrait_postcrest.jpg"
         },
         {
           id: 3,
           sup: "rd",
     
           type: "55 inch TV",
-          location: ["Ne amma", "Kamareddy", "Telangana"],
+          location: ["Person 3", "Kamareddy", "Telangana"],
           phone: "1234567890",
+          image: "https://www.picsofasia.com/wp-content/uploads/2018/03/Top_intro-north-vietnam.jpg"
         },
         {
           id: 4,
           sup: "th",
     
           type: "270 Ltr Fridge",
-          location: ["Ne amma", "Kamareddy", "Telangana"],
+          location: ["Person 4", "Kamareddy", "Telangana"],
           phone: "1234567890",
+          image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
       ];
   return (
@@ -65,7 +69,10 @@ function WinnerList() {
                   <p>{winner.phone}</p>
                 </div>
                 <div>
-                  <div className="border-2 h-[64px] w-[108px] bg-[#ffedcc] rounded-md skew-x-12 border-[#980d0b] mb-5"></div>
+                  <div className="border-2 h-[64px] max-w-[108px] bg-[#ffedcc] rounded-md skew-x-12 border-[#980d0b] mb-5 content-center overflow-hidden">
+                    
+              <img className="h-full w-full object-contain" src={winner.image}></img>
+                  </div>
                 </div>
               </div>
             </div>
