@@ -69,7 +69,8 @@ func SetupConnectionPool() {
 		createCouponCodeTableQuery := `
 			CREATE TABLE IF NOT EXISTS coupons (
 				id SERIAL PRIMARY KEY,
-				coupon_code TEXT NOT NULL UNIQUE
+				coupon_code TEXT NOT NULL UNIQUE,
+				pin TEXT NOT NULL UNIQUE
 			);
 		`
 
