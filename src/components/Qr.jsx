@@ -68,8 +68,7 @@ function Qr() {
       !place ||
       !district ||
       !state ||
-      !couponCode ||
-      !imageBase64
+      !couponCode
     ) {
       alert("All fields are required");
       return;
@@ -245,6 +244,7 @@ function Qr() {
           {filteredDistricts.map((name, index) => (
             <li 
               key={index} 
+              onMouseDown={()=>handleSelectChange(name)}
               onClick={() => handleSelectChange(name)} // Set the selected district and hide dropdown
               className="cursor-pointer hover:bg-gray-200 px-2 py-1"
             >
@@ -304,7 +304,7 @@ function Qr() {
                 className="h-10 w-10 mb-2"
               />
               <span className="text-gray-500 text-sm">
-                Upload your image with pouch*
+                Upload your image with pouch
               </span>
             </div>
           </div>
