@@ -51,7 +51,6 @@ func SetupConnectionPool() {
 				state TEXT NOT NULL,
 				coupon_code TEXT NOT NULL UNIQUE,
 				comments TEXT,
-				image_base_64 TEXT NOT NULL,
     			created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     			created_on_unix BIGINT DEFAULT EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT NOT NULL
 			);
@@ -99,6 +98,21 @@ func SetupConnectionPool() {
 		`
 
 		_, err = pool.Exec(context.Background(), createWinnersTableQuery)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		//tokens table to authenticate generate winners
+		createTokensTableQuery := `
+			CREATE TABLE IF NOT EXISTS tokens (
+				id SERIAL PRIMARY KEY,
+				token TEXT NOT NULL UNIQUE,
+				used BOOL NOT NULL default false
+			);
+		`
+
+		_, err = pool.Exec(context.Background(), createTokensTableQuery)
 
 		if err != nil {
 			log.Fatal(err)

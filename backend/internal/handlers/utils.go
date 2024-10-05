@@ -42,8 +42,8 @@ func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) 
 	}
 
 	if fetchedCoupon == submitRequest.CouponCode {
-		query := "INSERT INTO submissions (name, phone, place, district, pincode, state, coupon_code, comments, image_base_64) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
-		_, err = pool.Exec(context.Background(), query, submitRequest.Name, submitRequest.Phone, submitRequest.Place, submitRequest.District, submitRequest.Pincode, submitRequest.State, submitRequest.CouponCode, submitRequest.Comments, submitRequest.ImageBase64)
+		query := "INSERT INTO submissions (name, phone, place, district, pincode, state, coupon_code, comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"
+		_, err = pool.Exec(context.Background(), query, submitRequest.Name, submitRequest.Phone, submitRequest.Place, submitRequest.District, submitRequest.Pincode, submitRequest.State, submitRequest.CouponCode, submitRequest.Comments)
 
 		if err != nil {
 			// fmt.Println(err)
