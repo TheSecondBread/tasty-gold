@@ -23,3 +23,7 @@ services:
       - POSTGRES_PASSWORD=
       - POSTGRES_DB_NAME=
       - POSTGRES_PORT=
+      - ACCOUNT=
+      - ACCESS_KEY=
+      - SECRET_KEY=
+      - BUCKET_NAME=

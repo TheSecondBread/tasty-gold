@@ -15,7 +15,7 @@ type SubmitRequest struct {
 type WinnersRequest struct {
 	StartDate string `json:"start_date"`
 	EndDate   string `json:"end_date"`
-	Week      int8   `json:"week"`
+	Week      int16  `json:"week"`
 	Limit     int16  `json:"limit"`
 	Token     string `json:"token"`
 }

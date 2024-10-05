@@ -20,7 +20,7 @@ func sendJSONResponse(w http.ResponseWriter, data any, statusCode int) {
 	}
 }
 
-//validate everything before insertion
+// validate everything before insertion
 func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) {
 	//process the request, i.e., store it in the db
 	pool := db.GetConnectionPool()
@@ -58,7 +58,7 @@ func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) 
 	return map[string]string{"msg": "success"}, http.StatusOK
 }
 
-//generate winners
+// generate winners
 func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]string, int) {
 	pool := db.GetConnectionPool()
 
@@ -88,12 +88,12 @@ func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]
 	return map[string]string{"msg": "success"}, http.StatusOK
 }
 
-func getWinnersByWeek(week int) (map[string]any, int) {
+func getWinnersByWeek(week int, giftType string) (map[string]any, int) {
 	pool := db.GetConnectionPool()
 
-	query := `SELECT name, phone, coupon_code, district, state FROM winners WHERE week=$1`
+	query := `SELECT name, phone, coupon_code, district, state FROM winners WHERE week=$1 AND gift_type=$2`
 
-	rows, err := pool.Query(context.Background(), query, week)
+	rows, err := pool.Query(context.Background(), query, week, giftType)
 
 	if err != nil {
 		if err == pgx.ErrNoRows {

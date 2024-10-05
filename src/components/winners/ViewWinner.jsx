@@ -20,7 +20,7 @@ function ViewWinner() {
         <div className='flex flex-col justify-center items-center mt-20 mb-10'>
             <div className='w-[371px] h-[451px] bg-[#FFEDCC] opacity-80 flex justify-center items-center'>
             {/* <img src={`data:image/png;base64,${winner.img}`} alt="Winner" /> */}
-              <img src={winner.image}></img>
+              <img src={winner.image} onError={(e) => { e.target.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"; }}></img>
             </div>
             <div className='mt-10 bg-[#FFEDCC] opacity-80 w-[371px] text-center text-[24px] laila-medium'>{winner.type} Winner</div>
             <div className='text-[16px] laila-medium mt-2'>

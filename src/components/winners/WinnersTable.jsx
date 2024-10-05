@@ -10,7 +10,7 @@ function WinnersTable() {
   const [flag, setFlag] = useState(false)
 
   useEffect(()=>{
-    fetch(`api/v1/getwinners?week=${week}`)
+    fetch(`/api/v1/getwinners?week=${week}&gift_type=silver`)
     .then((resp)=>resp.json())
     .then((data)=>{
       setWinners(data["msg"])
@@ -34,7 +34,7 @@ function WinnersTable() {
         </h1>
         <div className="flex justify-center ">
           <div className=" bg-[#FFEDCC] border-4 border-[#980D0B] rounded-lg w-[420px] h-auto  flex flex-col justify-center items-center px-1 gap-10 py-16 ">
-            <WinnerList></WinnerList>
+            <WinnerList week={week}></WinnerList>
           </div>
         </div>
       </div>

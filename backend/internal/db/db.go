@@ -17,8 +17,7 @@ var (
 
 func SetupConnectionPool() {
 
-	postgresHost := os.Getenv("POSTGRES_HOST")
-
+	postgresHost := os.Getenv("POSTGRES_HOST") // your database host
 	user := os.Getenv("POSTGRES_USER")         // your database user
 	password := os.Getenv("POSTGRES_PASSWORD") // your database password
 	dbname := os.Getenv("POSTGRES_DB_NAME")    // your database name
@@ -93,6 +92,7 @@ func SetupConnectionPool() {
 				pincode TEXT NOT NULL,
 				state TEXT NOT NULL,
 				week SMALLINT NOT NULL,
+				gift_type TEXT NOT NULL DEFAULT 'silver',
 				won_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 				won_on_unix BIGINT DEFAULT EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT NOT NULL
 			)

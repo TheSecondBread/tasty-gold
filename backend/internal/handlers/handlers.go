@@ -9,6 +9,8 @@ import (
 
 	"github.com/0jk6/tasty-gold-backend/internal/db"
 	"github.com/0jk6/tasty-gold-backend/internal/models"
+	"github.com/0jk6/tasty-gold-backend/internal/r2"
+	"github.com/jackc/pgx/v5"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -40,6 +42,12 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	result, httpStatus := insertIntoDB(&submitRequest)
 
 	sendJSONResponse(w, result, httpStatus)
+
+	//upload image to R2 in a seperate goroutine
+	//upload only when insert succeeded
+	if httpStatus == http.StatusOK && submitRequest.ImageBase64 != "" {
+		go r2.Upload(submitRequest.ImageBase64, submitRequest.CouponCode)
+	}
 }
 
 func CheckCouponHandler(w http.ResponseWriter, r *http.Request) {
@@ -113,9 +121,10 @@ func GenerateWinnersHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetWinnersByWeekHandler(w http.ResponseWriter, r *http.Request) {
 	weekStr := r.URL.Query().Get("week")
+	giftType := r.URL.Query().Get("gift_type")
 
-	if weekStr == "" {
-		sendJSONResponse(w, map[string]string{"msg": "missing 'week' query parameter"}, http.StatusBadRequest)
+	if weekStr == "" || (giftType != "silver" && giftType != "gold") {
+		sendJSONResponse(w, map[string]string{"msg": "invalid query parameters"}, http.StatusBadRequest)
 		return
 	}
 
@@ -126,8 +135,46 @@ func GetWinnersByWeekHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result, httpStatus := getWinnersByWeek(week)
+	result, httpStatus := getWinnersByWeek(week, giftType)
 
 	sendJSONResponse(w, result, httpStatus)
 
+}
+
+func GetWinnerWeeksHandler(w http.ResponseWriter, r *http.Request) {
+	pool := db.GetConnectionPool()
+
+	weeks := make([]any, 0)
+
+	query := `SELECT DISTINCT week, DATE(won_on) FROM winners ORDER BY week;`
+	query = `select distinct week, TO_CHAR(won_on, 'YYYY-MM-DD') as won_on from winners w order by week ;`
+
+	rows, err := pool.Query(context.Background(), query)
+
+	if err != nil {
+		if err == pgx.ErrNoRows {
+			sendJSONResponse(w, map[string]any{"msg": weeks}, http.StatusOK)
+			return
+		}
+		sendJSONResponse(w, map[string]string{"msg": "something went wrong while querying the db"}, http.StatusInternalServerError)
+		log.Println("handlers.GetWinnerWeek:", err)
+		return
+	}
+
+	for rows.Next() {
+		var week int16
+		var wonOn string
+
+		rows.Scan(&week, &wonOn)
+
+		weeks = append(weeks, []any{week, wonOn})
+	}
+
+	if err = rows.Err(); err != nil {
+		log.Println("Error during row iteration:", err)
+		sendJSONResponse(w, map[string]any{"msg": "error processing result"}, http.StatusInternalServerError)
+		return
+	}
+
+	sendJSONResponse(w, map[string]any{"msg": weeks}, http.StatusOK)
 }
