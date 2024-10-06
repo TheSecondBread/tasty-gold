@@ -91,9 +91,20 @@ func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]
 func getWinnersByWeek(week int, giftType string) (map[string]any, int) {
 	pool := db.GetConnectionPool()
 
-	query := `SELECT name, phone, coupon_code, district, state FROM winners WHERE week=$1 AND gift_type=$2`
+	query := `SELECT name, phone, coupon_code, district, state, gift_type FROM winners WHERE week=$1 AND gift_type=$2`
 
-	rows, err := pool.Query(context.Background(), query, week, giftType)
+	if giftType != "silver" {
+		query = `SELECT name, phone, coupon_code, district, state, gift_type FROM winners WHERE week=$1 AND gift_type != 'silver'`
+	}
+
+	var rows pgx.Rows
+	var err error
+
+	if giftType == "silver" {
+		rows, err = pool.Query(context.Background(), query, week, giftType)
+	} else {
+		rows, err = pool.Query(context.Background(), query, week)
+	}
 
 	if err != nil {
 		if err == pgx.ErrNoRows {
@@ -109,14 +120,18 @@ func getWinnersByWeek(week int, giftType string) (map[string]any, int) {
 	for rows.Next() {
 		var winner models.Winner
 
-		err := rows.Scan(&winner.Name, &winner.Phone, &winner.CouponCode, &winner.District, &winner.State)
+		err := rows.Scan(&winner.Name, &winner.Phone, &winner.CouponCode, &winner.District, &winner.State, &winner.GiftType)
 
 		if err != nil {
 			log.Println("error scanning row:", err)
 			return map[string]any{"msg": "error processing result"}, http.StatusInternalServerError
 		}
 
-		winner.Phone = "******" + winner.Phone[6:]
+		if len(winner.Phone) != 10 {
+			winner.Phone = "******8865"
+		} else {
+			winner.Phone = "******" + winner.Phone[6:]
+		}
 
 		winners = append(winners, winner)
 
