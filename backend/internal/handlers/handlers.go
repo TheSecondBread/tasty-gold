@@ -34,7 +34,7 @@ func SubmissionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//continue only if the required data is present
-	if submitRequest.Name == "" || submitRequest.Phone == "" || submitRequest.CouponCode == "" || submitRequest.ImageBase64 == "" {
+	if submitRequest.Name == "" || submitRequest.Phone == "" || submitRequest.CouponCode == "" {
 		sendJSONResponse(w, map[string]string{"msg": "some mandatory field is missing"}, http.StatusBadRequest)
 		return
 	}

@@ -30,18 +30,18 @@ jobs:
     # Build and tag the frontend image (from root folder)
     - name: Build frontend Docker image
       run: |
-        docker build -t thesecondbread/tasty-gold-ui:0.0.1 .
+        docker build -t thesecondbread/tasty-gold-ui:0.0.2 .
 
     # Build and tag the backend image (from backend folder)
     - name: Build backend Docker image
       working-directory: ./backend
       run: |
-        docker build -t thesecondbread/tasty-gold-backend:0.0.1 .
+        docker build -t thesecondbread/tasty-gold-backend:0.0.2 .
 
     - name: Push frontend Docker image
       run: |
-        docker push thesecondbread/tasty-gold-ui:0.0.1
+        docker push thesecondbread/tasty-gold-ui:0.0.2
 
     - name: Push backend Docker image
       run: |
-        docker push thesecondbread/tasty-gold-backend:0.0.1
+        docker push thesecondbread/tasty-gold-backend:0.0.2

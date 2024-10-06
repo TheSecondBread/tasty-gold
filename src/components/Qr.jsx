@@ -281,16 +281,15 @@ function Qr() {
         </label>
 
         <div className="flex gap-1">
-          <label>
+          {/* <label>
             <textarea
               value={comments}
               onChange={(e) => setComments(e.target.value)}
               placeholder="Any Comment/Suggestions"
               className="w-[220px] border border-gray-300 rounded-md px-2 py-1 h-[143px]"
             />
-          </label>
-          <div className="relative w-full h-[143px] border border-gray-300 rounded-md bg-white flex items-center justify-center">
-            {/* File input */}
+          </label> */}
+          {/* <div className="relative w-full h-[143px] border border-gray-300 rounded-md bg-white flex items-center justify-center">
             <input
               type="file"
               accept="image/*"
@@ -307,7 +306,7 @@ function Qr() {
                 Upload your image with pouch
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {imagePreview && (
