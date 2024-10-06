@@ -60,6 +60,11 @@ func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) 
 
 // generate winners
 func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]string, int) {
+
+	if validateToken(generateWinnersRequest.Token) == false {
+		return map[string]string{"msg": "invalid token"}, http.StatusUnauthorized
+	}
+
 	pool := db.GetConnectionPool()
 
 	query := `
@@ -86,6 +91,30 @@ func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]
 	//if there is no error, return a success msg
 
 	return map[string]string{"msg": "success"}, http.StatusOK
+}
+
+func validateToken(token string) bool {
+	pool := db.GetConnectionPool()
+
+	query := `SELECT expired FROM tokens WHERE token=$1;`
+	var expired string
+
+	pool.QueryRow(context.Background(), query, token).Scan(&expired)
+
+	if expired != "no" {
+		return false
+	}
+
+	query = `UPDATE tokens SET expired='yes' WHERE token=$1;`
+
+	//expire the token
+	_, err := pool.Exec(context.Background(), query, token)
+
+	if err != nil {
+		log.Println("error in validateToken", err)
+	}
+
+	return true
 }
 
 func getWinnersByWeek(week int, giftType string) (map[string]any, int) {

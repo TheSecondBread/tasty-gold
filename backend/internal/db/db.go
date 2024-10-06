@@ -108,7 +108,7 @@ func SetupConnectionPool() {
 			CREATE TABLE IF NOT EXISTS tokens (
 				id SERIAL PRIMARY KEY,
 				token TEXT NOT NULL UNIQUE,
-				used BOOL NOT NULL default false
+				expired TEXT NOT NULL default 'no'
 			);
 		`
 
