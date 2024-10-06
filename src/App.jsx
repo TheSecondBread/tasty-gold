@@ -12,6 +12,7 @@ import WinnersTable from './components/winners/WinnersTable'
 import TermsAndConditions from './components/TermsAndConditions'
 import AlreadyRegistered from './AlreadyRegistered'
 import Sidebar from './components/Sidebar'
+import GenerateWinners from './components/winners/GenerateWinners'
 
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
       <Route path='/view-winner' element={<ViewWinner></ViewWinner>}></Route>
       <Route path='/success' element={<Success></Success>}></Route>
       <Route path='/already-registered' element={<AlreadyRegistered></AlreadyRegistered>}></Route>
+
+      <Route path='/generate-winners' element={<GenerateWinners></GenerateWinners>}></Route>
+
 
     </Routes>
     </BrowserRouter>
