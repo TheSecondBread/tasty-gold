@@ -35,8 +35,8 @@ function WinnerList({week}) {
     <>
       {winners.map((winner) => (
         <div key={winner.id} className="relative cursor-pointer hover:shadow-md" onClick={() => handleCardClick(winner)}>
-          <div className="h-[120px] w-[383px] bg-[#990100] -rotate-3 transform -skew-x-12 rounded-lg absolute shadow-2xl"></div>
-          <div className="h-[120px] w-[380px] bg-[#FDDC7D] border-2 border-[#990100] transform -skew-x-12 rounded-lg relative z-10 ">
+          <div className="h-[120px] min-w-[303px] bg-[#990100] -rotate-3 transform -skew-x-12 rounded-lg absolute shadow-2xl"></div>
+          <div className="h-[120px] min-w-[300px] bg-[#FDDC7D] border-2 border-[#990100] transform -skew-x-12 rounded-lg relative z-10 ">
             <div className="w-full flex justify-around items-center ">
               <div className="skew-x-12">
                 <div>
