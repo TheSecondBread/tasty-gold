@@ -14,40 +14,40 @@ function TermsAndConditions() {
           <div className="laila flex flex-col gap-4 text-lg font-medium px-2 mb-10">
             <ol className="flex flex-col gap-4 text-lg font-medium px-2">
               <li>
-                This offer is valid from 7th Oct 2024 to 30th Nov 2024, or until
+                1. This offer is valid from 7th Oct 2024 to 30th Nov 2024, or until
                 stocks last, whichever occurs first.
               </li>
               <li>
-                GOLD FEST OFFER available exclusively in the state of Telangana.
+                2. Each mobile number is eligible to register for the Gold Fest offer up to eight times.
               </li>
               <li>
-                To participate, customers must purchase 2 pouches of IL Tasty
+                3. To participate, customers must purchase 2 pouches of IL Tasty
                 Gold oil. Participation is through a scratch card and QR code
                 redemption process.
               </li>
               <li>
-                Customers need to scratch the card, scan the QR code, fill the
+                4. Customers need to scratch the card, scan the QR code, fill the
                 required details, and submit the form.
               </li>
               <li>
-                By participating in this offer, you accept and agree to all
+                5. By participating in this offer, you accept and agree to all
                 terms and conditions outlined on our website.
               </li>
               <li>
-                Participants and winners acknowledge that the company's
+                6. Participants and winners acknowledge that the company's
                 decisions regarding the offer are final and binding.
               </li>
               <li>
-                Every week, 50 lucky winners will be selected to win a 50 g
+                7. Every week, 50 lucky winners will be selected to win a 50 g
                 Silver coin each.
               </li>
               <li>
-                Additionally, as part of our Gold Bumper offer, 4 lucky winners
+                8. Additionally, as part of our Gold Bumper offer, 4 lucky winners
                 will be chosen weekly to win either a 5 g GOLD COIN, a 270 Ltr
                 REFRIGERATOR, or a 55-inch Smart LED TV.
               </li>
               <li>
-                Winners and Gold Bumper Offer Winners will be notified via
+                9. Winners and Gold Bumper Offer Winners will be notified via
                 WhatsApp or a phone call, and the winners list will be published
                 on our website{" "}
                 <a href="https://goldfestoffer.tastygoldoils.com">
@@ -56,9 +56,12 @@ function TermsAndConditions() {
                 .
               </li>
               <li>
-                For any further queries, you can reach us at{" "}
+                10. For any further queries, you can reach us at{" "}
                 <a href="tel:+918555977303">+91 85559 77303</a> between 10 AM to
                 5 PM, Mon to Sat.
+              </li>
+              <li>
+                11. ⁠The recipient who has won the prize will be ineligible to apply for the same offer in the future.
               </li>
             </ol>
 
@@ -66,11 +69,11 @@ function TermsAndConditions() {
 
             <ol>
               <li>
-                The company reserves the right to alter or withdraw the offer at
+                1. The company reserves the right to alter or withdraw the offer at
                 any time without prior notice.
               </li>
               <li>
-                Offer is non-transferable and cannot be exchanged for cash.
+                2. Offer is non-transferable and cannot be exchanged for cash.
               </li>
             </ol>
           </div>

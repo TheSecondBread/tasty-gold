@@ -12,7 +12,7 @@ function Home() {
         <img src="sb.png" alt="sb" className="bg-[#92b13f] px-2 mb-4 rounded-md mt-4" width={"75%"} height={"50%"}></img>
         
         <div className="w-full bg-[rgba(172,14,11,0.72)]">
-          <h1 className="font-bold text-[40px] text-white text-center">COMING SOON</h1>
+          <h1 className="font-bold text-[40px] text-white text-center">HURRY UP! OFFER ENDS ON NOV 14</h1>
         </div>
         
         <div className="border-4 border-[#ac0e0b] mt-4 rounded-2xl mb-2 md:border-8 bg-[#ac0e0b]">
