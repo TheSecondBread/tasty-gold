@@ -104,12 +104,13 @@ function Qr() {
       .then((data) => {
         // console.log("Success:", data);
         if (data["msg"] === "success") {
-          // alert("Form submission successful")
           navigate("/success");
         } else if (data["msg"] === "invalid coupon") {
           alert("Invalid or incorrect coupon");
         } else if (data["msg"] === "coupon already exists") {
           alert("This coupon was already used");
+        } else if (data["msg"] == "phone number limit reached") {
+          alert("Phone number limit reached")
         } else {
           alert("Failed to submit form");
         }

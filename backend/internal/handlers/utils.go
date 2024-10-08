@@ -37,8 +37,21 @@ func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) 
 			return map[string]string{"msg": "invalid coupon"}, http.StatusBadRequest
 		} else {
 			// SendJSONResponse(w, map[string]string{"error": "failed to query the database"}, http.StatusBadRequest)
-			return map[string]string{"error": "failed to query the database"}, http.StatusBadRequest
+			return map[string]string{"msg": "failed to query the database"}, http.StatusBadRequest
 		}
+	}
+
+	//check if a phone number is submitted more than 6 times
+	phoneNumQuery := `SELECT COUNT(*) FROM submissions WHERE phone = $1`
+	var count int64
+
+	err = pool.QueryRow(context.Background(), phoneNumQuery, submitRequest.Phone).Scan(&count)
+	if err != nil {
+		return map[string]string{"msg": "failed to query the database"}, http.StatusBadRequest
+	}
+
+	if count > 6 {
+		return map[string]string{"msg": "phone number limit reached"}, http.StatusBadRequest
 	}
 
 	if fetchedCoupon == submitRequest.CouponCode {
