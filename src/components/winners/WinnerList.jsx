@@ -20,7 +20,7 @@ function WinnerList({week}) {
           type: index === 0 ? "5g GOLD" : index === 1 ? "5g GOLD" : index === 2 ? "55 inch TV" : "270 Ltr Fridge",
           location: [winner.name, winner.district, winner.state],
           phone: winner.phone,
-          image: `https://pub-ac7d357298304d70bff6bcc5d53daf42.r2.dev/${winner.coupon_code}.png`
+          image: index === 0 ? "/coin.png" : index === 1 ? "/coin.png" : index === 2 ? "tv.png" : "fridge.png"
         }));
 
         setWinners(fetchedWinners)
