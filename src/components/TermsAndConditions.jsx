@@ -75,6 +75,9 @@ function TermsAndConditions() {
               <li>
                 2. Offer is non-transferable and cannot be exchanged for cash.
               </li>
+              <li>
+                3. The actual products may differ from the images displayed on the winners page.
+              </li>
             </ol>
           </div>
         </div>
