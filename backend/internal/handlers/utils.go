@@ -74,11 +74,25 @@ func insertIntoDB(submitRequest *models.SubmitRequest) (map[string]string, int) 
 // generate winners
 func generateWinners(generateWinnersRequest *models.WinnersRequest) (map[string]string, int) {
 
+	pool := db.GetConnectionPool()
+
+	//check if the given week already exists
+	weekQuery := `SELECT DISTINCT week FROM winners WHERE week = $1;`
+
+	var fetchedWeek int16
+
+	row := pool.QueryRow(context.Background(), weekQuery, generateWinnersRequest.Week)
+
+	row.Scan(&fetchedWeek)
+
+	if fetchedWeek == generateWinnersRequest.Week || fetchedWeek != 0 {
+		return map[string]string{"msg": "winners for this week were already chosen"}, http.StatusBadRequest
+	}
+
+	//validate the token
 	if validateToken(generateWinnersRequest.Token) == false {
 		return map[string]string{"msg": "invalid token"}, http.StatusUnauthorized
 	}
-
-	pool := db.GetConnectionPool()
 
 	query := `
 		INSERT INTO winners (user_id, name, phone, coupon_code, place, district, pincode, state, week)

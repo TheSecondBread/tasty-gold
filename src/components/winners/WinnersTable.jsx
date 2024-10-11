@@ -27,18 +27,6 @@ function WinnersTable() {
       <div className="border-4 border-[#ac0e0b] mt-4 rounded-2xl mb-2 md:border-8 bg-[#ac0e0b] ">
         <img src="offer.jpg" alt="offer image" className="rounded-xl" />
       </div>
-      {/* gold */}
-      <div>
-        <h1 className="text-[24px] laila-bold text-center mt-10">
-          BUMPER OFFER WINNERS
-        </h1>
-        <div className="flex justify-center ">
-          <div className=" bg-[#FFEDCC] border-4 border-[#980D0B] rounded-lg w-[420px] h-auto  flex flex-col justify-center items-center px-1 gap-10 py-16 ">
-            <WinnerList week={week}></WinnerList>
-          </div>
-        </div>
-      </div>
-      {/* gold end*/}
 
       <h1 className="text-[24px] laila-bold text-center mt-10">
         SILVER WINNERS
@@ -85,6 +73,19 @@ function WinnersTable() {
     </tbody>
   </table>
 </div>
+
+      {/* gold */}
+      <div>
+        <h1 className="text-[24px] laila-bold text-center mt-10">
+          BUMPER OFFER WINNERS
+        </h1>
+        <div className="flex justify-center ">
+          <div className=" bg-[#FFEDCC] border-4 border-[#980D0B] rounded-lg w-[420px] h-auto  flex flex-col justify-center items-center px-1 gap-10 py-16 ">
+            <WinnerList week={week}></WinnerList>
+          </div>
+        </div>
+      </div>
+      {/* gold end*/}
 
     </div>
   );
