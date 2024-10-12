@@ -38,7 +38,7 @@ function GenerateWinners() {
     setLoading(true)
     setTimeout(() => {
       navigate("/winners-dashboard");
-    }, 6000);
+    }, 30000);
 
     // fetch(`/api/v1/generatewinners`, {
     //   method: "POST",
