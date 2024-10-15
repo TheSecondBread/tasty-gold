@@ -75,8 +75,9 @@ function Qr() {
     } else if (phone.length != 10) {
       alert("Phone number must be of 10 digits");
       return;
-    } else if (districtNames.includes(district) == false){
+    } else if (districtNames.includes(district) === false){
       alert("Select a valid district")
+      return;
     }
 
     const formData = {
