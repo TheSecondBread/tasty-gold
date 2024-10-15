@@ -14,7 +14,14 @@ function WinnerList({week}) {
     fetch(`/api/v1/getwinners?week=${week}&gift_type=gold`)
       .then((resp) => resp.json())
       .then((data) => {
-        const fetchedWinners = data["msg"].map((winner, index) => ({
+
+        const goldList = data.msg.filter(entry => entry.gift_type === "gold");
+        const tvList = data.msg.filter(entry => entry.gift_type === "tv");
+        const fridgeList = data.msg.filter(entry => entry.gift_type === "fridge");
+
+        const sortedList = [...goldList.slice(0, 2), ...tvList.slice(0, 1), ...fridgeList.slice(0, 1)];
+        
+        const fetchedWinners = sortedList.map((winner, index) => ({
           id: index + 1,
           sup: ["st", "nd", "rd", "th"][index], 
           type: index === 0 ? "5g GOLD" : index === 1 ? "5g GOLD" : index === 2 ? "55 inch TV" : "270 Ltr Fridge",
@@ -24,7 +31,7 @@ function WinnerList({week}) {
         }));
 
         setWinners(fetchedWinners)
-        console.log(fetchedWinners)
+        // console.log(fetchedWinners)
       })
       .catch((err) => {
         console.log(err)
