@@ -147,10 +147,10 @@ func validateToken(token string) bool {
 func getWinnersByWeek(week int, giftType string) (map[string]any, int) {
 	pool := db.GetConnectionPool()
 
-	query := `SELECT name, phone, coupon_code, district, state, gift_type FROM winners WHERE week=$1 AND gift_type=$2`
+	query := `SELECT name, phone, coupon_code, place, district, state, gift_type FROM winners WHERE week=$1 AND gift_type=$2`
 
 	if giftType != "silver" {
-		query = `SELECT name, phone, coupon_code, district, state, gift_type FROM winners WHERE week=$1 AND gift_type != 'silver'`
+		query = `SELECT name, phone, coupon_code, place, district, state, gift_type FROM winners WHERE week=$1 AND gift_type != 'silver'`
 	}
 
 	var rows pgx.Rows
@@ -176,7 +176,7 @@ func getWinnersByWeek(week int, giftType string) (map[string]any, int) {
 	for rows.Next() {
 		var winner models.Winner
 
-		err := rows.Scan(&winner.Name, &winner.Phone, &winner.CouponCode, &winner.District, &winner.State, &winner.GiftType)
+		err := rows.Scan(&winner.Name, &winner.Phone, &winner.CouponCode, &winner.Place, &winner.District, &winner.State, &winner.GiftType)
 
 		if err != nil {
 			log.Println("error scanning row:", err)

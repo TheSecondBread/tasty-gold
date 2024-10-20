@@ -33,7 +33,7 @@ function WinnersTable() {
       </h1>
       <div className="laila-medium">
   {/* Full table for all screens, but with adjustments for smaller screens */}
-  <table className="min-w-full mt-4 border-[#990100] border-4 rounded-xl mb-10">
+  {/* <table className="min-w-full mt-4 border-[#990100] border-4 rounded-xl mb-10">
     <thead className="bg-[#FFEDCC]">
       <tr className="border-b-2 border-black laila-bold">
         <th className="border border-[#990100] px-2 py-1 text-center text-black text-sm sm:text-base">
@@ -44,6 +44,9 @@ function WinnersTable() {
         </th>
         <th className="border border-[#990100] px-2 py-1 text-center text-black text-sm sm:text-base">
           PLACE
+        </th>
+        <th className="border border-[#990100] px-2 py-1 text-center text-black text-sm sm:text-base">
+          DISTRICT
         </th>
         <th className="border border-[#990100] px-2 py-1 text-center text-black text-sm sm:text-base">
           MOBILE
@@ -63,6 +66,9 @@ function WinnersTable() {
             {row.name}
           </td>
           <td className="border-r border-[#990100] px-2 py-1 text-sm sm:text-base">
+            {row.place}
+          </td>
+          <td className="border-r border-[#990100] px-2 py-1 text-sm sm:text-base">
             {row.district}
           </td>
           <td className="border-r border-[#990100] px-2 py-1 text-sm sm:text-base">
@@ -71,7 +77,55 @@ function WinnersTable() {
         </tr>
       ))}
     </tbody>
+  </table> */}
+  <div className="overflow-x-auto">
+  <table className="min-w-full mt-3 border-[#990100] border-4 rounded-xl mb-8 table-auto">
+    <thead className="bg-[#FFEDCC]">
+      <tr className="border-b-2 border-black laila-bold">
+        <th className="border border-[#990100] px-1 sm:px-1 py-0.5 text-center text-black text-[10px] sm:text-xs md:text-sm">
+          S.No
+        </th>
+        <th className="border border-[#990100] px-1 sm:px-1 py-0.5 text-center text-black text-[10px] sm:text-xs md:text-sm">
+          NAME
+        </th>
+        <th className="border border-[#990100] px-1 sm:px-1 py-0.5 text-center text-black text-[10px] sm:text-xs md:text-sm">
+          PLACE
+        </th>
+        <th className="border border-[#990100] px-1 sm:px-1 py-0.5 text-center text-black text-[10px] sm:text-xs md:text-sm">
+          DISTRICT
+        </th>
+        <th className="border border-[#990100] px-1 sm:px-1 py-0.5 text-center text-black text-[10px] sm:text-xs md:text-sm">
+          MOBILE
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {winners.map((row, i) => (
+        <tr
+          key={i + 1}
+          className="bg-[#ffcf9b] bg-opacity-90 text-black"
+        >
+          <td className="border-r border-[#990100] px-1 sm:px-1 py-0.5 text-right text-[10px] sm:text-xs md:text-sm">
+            {i + 1}
+          </td>
+          <td className="border-r border-[#990100] px-1 sm:px-1 py-0.5 text-[10px] sm:text-xs md:text-sm">
+            {row.name}
+          </td>
+          <td className="border-r border-[#990100] px-1 sm:px-1 py-0.5 text-[10px] sm:text-xs md:text-sm">
+            {row.place}
+          </td>
+          <td className="border-r border-[#990100] px-1 sm:px-1 py-0.5 text-[10px] sm:text-xs md:text-sm">
+            {row.district}
+          </td>
+          <td className="border-r border-[#990100] px-1 sm:px-1 py-0.5 text-[10px] sm:text-xs md:text-sm">
+            {row.phone}
+          </td>
+        </tr>
+      ))}
+    </tbody>
   </table>
+</div>
+
 </div>
 
       {/* gold */}

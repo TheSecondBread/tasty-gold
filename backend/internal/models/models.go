@@ -24,6 +24,7 @@ type Winner struct {
 	Name       string `json:"name"`
 	Phone      string `json:"phone"`
 	CouponCode string `json:"coupon_code"`
+	Place      string `json:"place"`
 	District   string `json:"district"`
 	State      string `json:"state"`
 	GiftType   string `json:"gift_type"`
