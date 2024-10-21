@@ -128,9 +128,9 @@ function GenerateWinners() {
             {loading == false ? (
               <button
                 type="submit"
-                className="mt-5 p-2 bg-white text-black w-[223px] h-[65px] text-[32px] font-bold rounded-[43px] mb-10 shadow-3xl active:shadow-none border-1 border-black m-plus-2-font"
+                className="mt-5 p-2 bg-white text-black w-[223px] h-[65px] text-[24px] font-bold rounded-[43px] mb-10 shadow-3xl active:shadow-none border-1 border-black m-plus-2-font"
               >
-                GENERATE
+                LUCKY DRAW
               </button>
             ) : (
               <Loader />
