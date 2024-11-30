@@ -23,6 +23,8 @@ function Qr() {
 
   // Set coupon code from URL parameters
   useEffect(() => {
+    //don't check anything, redirect the page to home page
+    navigate("/")
     const codeFromParams = searchParams.get("code");
     if (codeFromParams) {
       setCouponCode(codeFromParams);
